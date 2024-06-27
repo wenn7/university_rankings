@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>大学排名数据可视化</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<div class="content-body">
+    <div class="header">
+        <div class="header-left">
+            <span style="font-size: 30px;">大学排名数据可视化</span>
+        </div>
+        <div class="header-time">
+            <span id="time"></span>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="content-con">
+            <div class="left-body">
+                <div class="left-top public-bg">
+                    <div class="public-title" style="font-size: 16px;">总数据量</div>
+                    <div class="top-body">
+                        <div class="top-left">
+                            <div class="top-left-title" style="margin-top: -40px;">
+                                
+                                <span ><b style="font-size: 70px;">22934</b></span>
+                                <img src="image/pictre.png" >
+                            </div>
+
+                        </div>
+                      
+
+                    </div>
+
+                </div>
+                <div class="left-con public-bg">
+                    <div class="public-title" style="font-size: 16px;">主要大学的类型分布情况</div>
+                    <div class="title-nav" id="leida"></div>
+                </div>
+                <div class="left-bottom public-bg">
+                    <div class="public-title" style="font-size: 16px;">主要大学的省市分布情况</div>
+                    <div class="title-nav" id="wuran"></div>
+                </div>
+            </div>
+
+            <div class="center-body">
+                <div class="map" id="map"></div>
+            </div>
+
+            <div class="right-body">
+                <div class="right-top public-bg">
+                    <div class="public-title" style="font-size: 16px;">大学平均排名TOP5</div>
+                    <div class="title-nav">
+                        <div class="top5-ul">
+                            <ul>
+                                <li>
+                                    <span>1</span>
+                                    <span>992</span>
+                                    <span>清华大学</span>
+                                    <span>北京</span>
+                                    <span>理工</span>
+                                   
+                                </li>
+                                <li>
+                                    <span>2</span>
+                                    <span>898</span>
+                                    <span>北京大学</span>
+                                    <span>北京</span>
+                                    <span>综合</span>
+                                   
+                                </li>
+                                <li>
+                                    <span>3</span>
+                                    <span>793</span>
+                                    <span>浙江大学</span>
+                                    <span>浙江</span>
+                                    <span>综合</span>
+                                   
+                                </li>
+                                <li>
+                                    <span>4</span>
+                                    <span>776</span>
+                                    <span>上海交通大学</span>
+                                    <span>上海</span>
+                                    <span>理工</span>
+                                   
+                                </li>
+                                <li>
+                                    <span>5</span>
+                                    <span>697</span>
+                                    <span>复旦大学</span>
+                                    <span>上海</span>
+                                    <span>综合</span>
+                                   
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-con public-bg">
+                    <div class="public-title" style="font-size: 16px;">各网站数据量</div>
+                    <div class="title-nav" id="huaxing"></div>
+                </div>
+                <div class="right-bottom public-bg">
+                    <div class="public-title" style="font-size: 16px;">华侨大学年排名变化</div>
+                    <div class="title-nav" id="zhexian"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
+<script src="https://www.jq22.com/jquery/echarts-4.2.1.min.js"></script>
+<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/china.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+
+<script>
+    //顶部时间
+    function getTime(){
+        var myDate = new Date();
+        var myYear = myDate.getFullYear(); //获取完整的年份(4位,1970-????)
+        var myMonth = myDate.getMonth()+1; //获取当前月份(0-11,0代表1月)
+        var myToday = myDate.getDate(); //获取当前日(1-31)
+        var myDay = myDate.getDay(); //获取当前星期X(0-6,0代表星期天)
+        var myHour = myDate.getHours(); //获取当前小时数(0-23)
+        var myMinute = myDate.getMinutes(); //获取当前分钟数(0-59)
+        var mySecond = myDate.getSeconds(); //获取当前秒数(0-59)
+        var week = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+        var nowTime;
+
+        nowTime = myYear+'年'+fillZero(myMonth)+'月'+fillZero(myToday)+'日'+'&nbsp;&nbsp;'+fillZero(myHour)+':'+fillZero(myMinute)+':'+fillZero(mySecond)+'&nbsp;&nbsp;'+week[myDay]+'&nbsp;&nbsp;';
+        //console.log(nowTime);
+        $('#time').html(nowTime);
+    };
+    function fillZero(str){
+        var realNum;
+        if(str<10){
+            realNum	= '0'+str;
+        }else{
+            realNum	= str;
+        }
+        return realNum;
+    }
+    //大屏
+    setInterval(getTime,1000);
+</script>
